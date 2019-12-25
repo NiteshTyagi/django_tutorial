@@ -1,0 +1,10 @@
+body{
+    background: rgb(207, 207, 207);
+}
+
+.grid_view .col-sm-4{
+    border-right:1px solid black;
+}
+.grid_view{
+    margin-bottom: 2rem;
+}
