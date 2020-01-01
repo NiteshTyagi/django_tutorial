@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Bootstrap in Django
+{% endblock %}
+
+
+{% block content %}
+
+<div class="jumbotron text-center">
+    <h1>Inherited Page (Template) From Base</h1>
+    <h1>Let's implement Bootstrap Form and process it.</h1>
+</div>
+
+
+
+<form action='/submit_form/' action="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="Inputname">Name</label>
+        <input type="text" class="form-control" id="nameinput" aria-describedby="nameHelp" placeholder="Enter name" name='name' value='' required />
+    </div>
+
+    <div class="form-group">
+        <label for="FormControlTextarea">Address</label>
+        <textarea class="form-control" id="textareamessage" placeholder="Enter your Address" rows="3" name='address' value='address' required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form>
+
+{% endblock %}

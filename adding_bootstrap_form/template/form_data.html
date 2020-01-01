@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+<!-- {% load static %} -->
+
+
+{% block stylesheet %}
+    <link rel='stylesheet' href='{% static "style_form.css" %}' />
+{% endblock %}
+
+{% block title %}
+    Form Record
+{% endblock %}
+
+{% block content %}
+
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for record in record_set %}
+            <tr>
+                <th>{{ record.pk }}</th>
+                <td>{{ record.name }}</td>
+                <td>{{ record.address }}</td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+
+{% endblock %}
