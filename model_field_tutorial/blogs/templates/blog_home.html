@@ -1,0 +1,8 @@
+<!-- {{ blogs }} -->
+
+{% for blog in blogs %}
+    <div> <h2>{{ blog.title }}</h2>
+        <div>{{blog.content}}</div>
+    </div>
+
+{% endfor %}
