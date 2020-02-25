@@ -6,12 +6,12 @@ from django.utils.timezone import now
 class todoModel(models.Model):
     """ This is the ToDO class for model"""
 
-    text = models.CharField(max_length=1000)
+    text = models.TextField()
     created_date = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.text
-        
+
 
 
