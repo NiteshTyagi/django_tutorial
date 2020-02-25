@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>To do List </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div class='text-center'>
+    <h2>Your TO-DO Webapp </h2>
+</div>
+<div class='jumbotron text-center flex-column d-flex justify-content-center'>    
+<form action='/process_form/' method="post"> 
+    {% csrf_token %}
+    {{ form }}
+    <div>
+        <button class='btn btn-primary' type='submit'>submit</button>
+    </div>
+</form>
+
+<div>
+    <p><a href='{% url "delete_completed" flag=0 %}'>
+        Delete Completed Task <i class="fa fa-trash"></i>
+    </a></p>
+    <p><a href='{% url "delete_completed" flag=1 %}'>
+        Delete All Task <i class="fa fa-trash"></i>
+    </a></p>
+</div>
+</div>
+
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Task To do </th>
+            <th>Created Date</th>
+            <th>Pending</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for todo in to_do_list %}
+            <tr>
+                <td><a  href= "{% url 'edit_todo' pk=todo.id %}">{{ todo.text }}</a></td>
+                <td>{{ todo.created_date }}</td>
+                <td> {% if todo.active %}
+                        Pending
+                    {% else %}
+                    <del> Completed </del>
+                    {% endif %}
+                </td>
+                
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+        
+</div>
+  
+
+</body>
+</html>

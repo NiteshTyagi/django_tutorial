@@ -1,0 +1,7 @@
+<div class='jumbotron text-center flex-column d-flex justify-content-center'>    
+<form action='{% url "edit_todo" pk=pk %}' method="post"> 
+    {% csrf_token %}
+    {{ form }}
+    <button class='btn btn-primary' type='submit'>submit</button>
+</form>
+</div>
