@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Search Movie in Django
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-6 text-center">Movie Search WebAPP (From Database or OMDb Api)</h1>
+            <form action='' class='col-9 m-auto' action="GET">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="MovieName">MovieName</label>
+                    <input type="text" class="form-control" id="MovieName" aria-describedby="MovieName" placeholder="Enter Movie Name" name='movie_name' value='{{ movie_name }}' required />
+                </div>
+        
+                <button type="submit" class="btn btn-primary mb-2">Search</button>
+            </form>
+        </div>
+    </div>
+    <div class='d-flex justify-content-between'>
+        <h2>Result</h2>
+        <a class='btn btn-link' href='{% url "ShowMovie" %}'>Show All Movies</a>
+    </div>
+    {% if movie %}
+    <div class="jumbotron">
+            <img src='{{ movie.image_url }}' alt='{{ movie.name }}' style='width: 23%;height: 16rem;'/>            
+            <p>Movie Name :<span> <strong>{{ movie.name }}</strong></span></p>
+            <p>Movie year :<span>{{ movie.year }}</span></p>
+            <p>Movie Released Date :<span>{{ movie.released_date }}</span></p>
+            <p>Genre :<span>{{ movie.Genre }}</span></p>
+            <p>Director :<span>{{ movie.director }}</span></p>
+            <p>Writer :<span>{{ movie.writer }}</span></p>
+            <p>Plot :<span>{{ movie.plot }}</span></p>
+            <p>Language :<span>{{ movie.language }}</span></p>
+            <p>Awards  :<span>{{ movie.Awards }}</span></p>
+      </div>
+      <div class="alert alert-info text-center" role="alert">
+        <h2>Above Movie is also added to the Database.</h2>
+        <h6>Want to edit it --> 
+            <a class='btn  btn-link' href='{% url "EditMovie" pk=movie.pk %}'>Edit</a>
+        </h6>
+    </div> 
+    {% elif error %}
+        <div class="alert alert-danger text-center" role="alert">
+            <h2>{{ error }}</h2>
+            <h6>Please Try with Vaild Keyword</h6>
+        </div> 
+    {% endif %}
+     
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Show Movie in Django
+{% endblock %}
+
+
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-6 text-center">All Movies Stored in the database</h1>
+    </div>
+</div>
+
+{% if movies %}
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Year</th>
+        <th scope="col">Director</th>
+        <th scope="col">Language</th>
+        <th scope="col">Edit Option</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for movie in movies %}
+            <tr>
+                <th scope="row">{{ movie.id }}</th>
+                <td>{{ movie.name }}</td>
+                <td>{{ movie.year }}</td>
+                <td>{{ movie.director }}</td>
+                <td>{{ movie.language }}</td>
+                <td> <a class='btn btn-link' href='{% url "EditMovie" pk=movie.pk %}'>Edit</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+<div class="alert alert-danger text-center" role="alert">
+    No record in Database ,Please Add into it.
+</div>
+{% endif %}
+<a class='btn btn-link' href='{% url "SearchMovie" %}'>Search and Add</a>
+
+{% endblock %}
